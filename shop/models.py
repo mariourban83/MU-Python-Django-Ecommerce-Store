@@ -32,7 +32,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('name',)
-        index_together = (('id', 'slug'))
+        index_together = (('id', 'slug')) # Defined for querying products by both id's & slug's
 
     def __str__(self):
         return self.name
