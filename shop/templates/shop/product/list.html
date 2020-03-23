@@ -2,9 +2,26 @@
 {% load static %}
 
 {% block content %}
-<br>
-<div class="container">
-    <img class="img-fluid" src="{% static 'img/banner1.jpg' %}" alt="image">
-</div>
-<br>
+
+{% if products %}
+        <div class="container text-center">
+            <br>
+            <div class="row">
+              {% for product in products %}
+                <div class="col-8 col-sm-5 col-md-3 col-lg-2 mt-2 mx-auto border rounded">
+                  <a class="text-dark" href="{{ product.get_absolute_url }}">
+                  <img class="img-fluid text-center" src="{{ product.image.url }}" alt="">
+                  <p class="text-center">{{ product.name }}</p>
+                  </a>
+                  <h5 class="text-center">{{ product.price }} Euro</h5>
+                </div>
+              {% endfor %}
+            </div>
+        </div>           
+    {% endif %}
+    <br>
+    <div class="container text-center">
+      <button type="button" class="btn btn-lg text-white" style="background-color: #74AB8C;">See all products</button>
+    </div>
+    <br>
 {% endblock %}

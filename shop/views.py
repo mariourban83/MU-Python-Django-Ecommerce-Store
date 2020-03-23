@@ -1,6 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 
+
+def home(request):
+    products = Product.objects.all
+    return render(request, 'shop/home.html', {'products': products})
+
+
+def contact(request):
+    return render(request, 'shop/contact.html', {})
+
+
+def faq(request):
+    return render(request, 'shop/faq.html', {})
+
+
 """
 Product Catalog view to display all available products
 or to display products filtered by category.
@@ -8,6 +22,7 @@ or to display products filtered by category.
 
 
 def product_list(request, category_slug=None):
+    title = "All Products"
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
@@ -17,7 +32,8 @@ def product_list(request, category_slug=None):
     return render(request, 'shop/product/list.html',
                   {'products': products,
                    'category': category,
-                   'categories': categories})
+                   'categories': categories,
+                   'title': title})
 
 
 """
@@ -27,6 +43,8 @@ Slug passed in for urls building
 
 
 def product_detail(request, id, slug):
+    title = "Product Detail"
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     return render(request, 'shop/product/detail.html',
-                  {'product': product})
+                  {'product': product,
+                   'title': title})
