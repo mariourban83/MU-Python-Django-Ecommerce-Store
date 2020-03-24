@@ -3,16 +3,20 @@ from .models import Category, Product
 
 
 def home(request):
+    title = "LR Ireland | Home"
     products = Product.objects.all
-    return render(request, 'shop/home.html', {'products': products})
+    return render(request, 'shop/home.html', {'products': products,
+                                              'title': title})
 
 
 def contact(request):
-    return render(request, 'shop/contact.html', {})
+    title = "LR Ireland | Contact"
+    return render(request, 'shop/contact.html', {'title': title})
 
 
 def faq(request):
-    return render(request, 'shop/faq.html', {})
+    title = "LR Ireland | FAQ"
+    return render(request, 'shop/faq.html', {'title': title})
 
 
 """
@@ -22,7 +26,7 @@ or to display products filtered by category.
 
 
 def product_list(request, category_slug=None):
-    title = "All Products"
+    title = "LR Ireland | All Products"
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
@@ -43,8 +47,15 @@ Slug passed in for urls building
 
 
 def product_detail(request, id, slug):
-    title = "Product Detail"
+    title = "LR Ireland | Product Detail"
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     return render(request, 'shop/product/detail.html',
                   {'product': product,
                    'title': title})
+
+
+def special_offers(request):
+    title = "LR Ireland | Special Offers"
+    products = Product.objects.filter(special_offer=True)
+    return render(request, 'shop/special_offers.html', {'products': products,
+                                                        'title': title})

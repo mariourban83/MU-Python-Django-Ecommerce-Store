@@ -2,4 +2,17 @@
 {% load static %}
 
 {% block content %}
+<div class="col-8 col-sm-5 col-md-6 col-lg-3 ">
+  <a class="text-dark" href="{{ product.get_absolute_url }}">
+  <img class="img-fluid text-center" src="{{ product.image.url }}" alt="">
+  <p class="text-center">{{ product.name }}</p>
+  </a>
+  <h5 class="text-center">{{ product.price }} Euro</h5>
+</div>
+<div class="container text-center">
+  <a class="nav-link text-body" href="{% url 'shop:product_list' %}">
+    <button type="button" class="btn btn-lg text-white" style="background-color: #74AB8C;">Back to products</button>
+  </a>
+</div>
+<br>
 {% endblock %}
