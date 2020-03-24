@@ -10,7 +10,8 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/731c7b42c4.js" crossorigin="anonymous"></script>
     {% block title %}
     {% if title %}
     <title>{{ title }}</title>
@@ -27,6 +28,19 @@
             <p class="text-center text-white pb-2">Independent Partner | K.Simonova</p>
         </a>
     </div>
+    <div class="container text-right">
+        <i class="fas fa-shopping-cart fa-lg" style="color:#74AB8C"> </i>
+        {% with total_items=cart|length %}
+          {% if cart|length > 0 %}
+            <a class="font-weight-bold" href="{% url 'cart:cart_detail' %}" style="color:rgb(0, 0, 0)">
+                {{ total_items }} Item{{ total_items|pluralize }} , Total  
+                {{ cart.get_total_price }} €
+            </a>
+          {% else %}
+            Your cart is empty.
+          {% endif %}
+        {% endwith %}
+    </div>
     <nav class="navbar navbar-expand-xl navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,13 +52,10 @@
                     <a class="nav-link text-body" href="{% url 'shop:special_offer' %}">Special Offers</a>
                 </li>
                 <li class="nav-item  border-right p-2">
-                    <a class="nav-link text-body" href="#">LR LIFETAKT</a>
+                    <a class="nav-link text-body" href="{% url 'shop:product_list' %}">ALL Products</a>
                 </li>
                 <li class="nav-item border-right p-2">
-                    <a class="nav-link text-body" href="#">Cosmetics</a>
-                </li>
-                <li class="nav-item  border-right p-2">
-                    <a class="nav-link text-body" href="{% url 'shop:product_list' %}">ALL Products</a>
+                    <a class="nav-link text-body" href="#">Categories</a>
                 </li>
                 <li class="nav-item border-right p-2">
                     <a class="nav-link text-body" href="{% url 'shop:contact' %}">CONTACT</a>
