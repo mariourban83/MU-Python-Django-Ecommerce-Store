@@ -10,20 +10,37 @@ class Cart(object):
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
-        """
-        Create and save an empty card dictionary to the session if card
-        is not present.
-        """
         if not cart:
+            """
+            Save an empty card dictionary to the session if card
+            is not present.
+            """
             cart = self.session[settings.CART_SESSION_ID] = {}
-            self.cart = cart
+        self.cart = cart
 
-    """
-    Method for adding item(s) to the card or to update quantity.
-    Product ID used as a key in the cart's content dictionary.
-    To serialize session data, product ID and price are converted into string
-    """
+    def __iter__(self):
+        """
+        For iterating over the items in the cart
+        and retrieve products from db
+        """
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
+        cart = self.cart.copy()
+        for product in products:
+            cart[str(product.id)]['product'] = product
+
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['quantity']
+            yield item
+
     def add(self, product, quantity=1, update_quantity=False):
+        """
+        Method for adding item(s) to the card or to update quantity.
+        Product ID used as a key in the cart's content dictionary.
+        To serialize session data, product ID and price are converted into
+        string.
+        """
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
@@ -45,22 +62,6 @@ class Cart(object):
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
-
-    """
-    For iterating over the items in the cart
-    and retrieve products from db
-    """
-    def __iter__(self):
-        product_ids = self.cart.keys()
-        products = Product.object.filter(id_in=product_ids)
-        cart = self.cart.copy()
-        for product in products:
-            cart[str(product.id)]['product'] = product
-
-        for item in cart.values():
-            item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['quantity']
-            yield item
 
     """
     Custom method for returning total number of items

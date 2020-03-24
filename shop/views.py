@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
+from cart.forms import CartAddProductForm
 
 
 def home(request):
@@ -19,17 +20,16 @@ def faq(request):
     return render(request, 'shop/faq.html', {'title': title})
 
 
-"""
-Product Catalog view to display all available products
-or to display products filtered by category.
-"""
-
-
 def product_list(request, category_slug=None):
+    """
+    Product Catalog view to display all available products
+    or to display products filtered by category.
+    """
     title = "LR Ireland | All Products"
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
+    cart_product_form = CartAddProductForm()
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
@@ -37,20 +37,21 @@ def product_list(request, category_slug=None):
                   {'products': products,
                    'category': category,
                    'categories': categories,
+                   'cart_product_form': cart_product_form,
                    'title': title})
 
 
-"""
-Single Product view to display product detail page via ID.
-Slug passed in for urls building
-"""
-
-
 def product_detail(request, id, slug):
+    """
+    Single Product view to display product detail page via ID.
+    Slug passed in for urls building
+    """
     title = "LR Ireland | Product Detail"
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    cart_product_form = CartAddProductForm()
     return render(request, 'shop/product/detail.html',
                   {'product': product,
+                   'cart_product_form': cart_product_form,
                    'title': title})
 
 
