@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +43,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'eshop.urls'
+
+CART_SESSION_ID = 'cart'
 
 TEMPLATES = [
     {
