@@ -58,5 +58,8 @@ def product_detail(request, id, slug):
 def special_offers(request):
     title = "LR Ireland | Special Offers"
     products = Product.objects.filter(special_offer=True)
-    return render(request, 'shop/special_offers.html', {'products': products,
-                                                        'title': title})
+    cart_product_form = CartAddProductForm()
+    return render(request, 'shop/special_offers.html',
+                           {'products': products,
+                            'cart_product_form': cart_product_form,
+                            'title': title})

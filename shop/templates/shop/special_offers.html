@@ -20,6 +20,11 @@
                   <p class="text-center">{{ product.name }}</p>
                   </a>
                   <h5 class="text-center">{{ product.price }} Euro</h5>
+                  <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart">
+                    </form>
                 </div>
               {% endfor %}
             </div>
