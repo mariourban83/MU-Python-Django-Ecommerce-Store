@@ -52,11 +52,13 @@
       </tr>
     </tbody>
   </table>
-
-  <p class="text-right">
-    <a href="{% url 'shop:product_list' %}" class="button light">Continue shopping</a>
-      Checkout
-    </a>
-  </p>
+<div class="container text-right">
+  <a class="nav-link text-body" href="{% url 'shop:product_list' %}">
+    <button type="button" class="btn text-white" style="background-color: #74AB8C;">Continue Shopping</button>
+  </a>
+  <a class="nav-link text-body" href="{% url 'orders:order_create' %}">
+    <button type="button" class="btn text-white" style="background-color: #74AB8C;">Checkout</button>
+  </a>
+</div>
 </div>
 {% endblock %}
