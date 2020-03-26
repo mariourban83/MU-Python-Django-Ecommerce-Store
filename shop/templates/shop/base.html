@@ -29,7 +29,12 @@
         </a>
     </div>
     <div class="container text-right">
-        <i class="fas fa-shopping-cart fa-lg" style="color:#74AB8C"> </i>
+        {% if user.is_authenticated %}
+            <i class="fas fa-user fa-lg pr-3" style="color:#74AB8C"></i>
+        {% else %}
+            <i class="fas fa-user-slash fa-lg pr-3" style="color:#74AB8C"></i>
+        {% endif %}
+        <i class="fas fa-shopping-cart fa-lg" style="color:#74AB8C"></i>
         {% with total_items=cart|length %}
           {% if cart|length > 0 %}
             <a class="font-weight-bold" href="{% url 'cart:cart_detail' %}" style="color:rgb(0, 0, 0)">
@@ -60,10 +65,15 @@
                 <li class="nav-item border-right p-2">
                     <a class="nav-link text-body" href="{% url 'shop:contact' %}">CONTACT</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item  border-right p-2">
-                    <a class="nav-link text-body" href="{% url 'shop:faq' %}">FAQ</a>
+                    <a class="nav-link text-body" href="{% url 'logout' %}">Log Out</i></a>
                 </li>
-
+                {% else %}
+                <li class="nav-item  border-right p-2">
+                    <a class="nav-link text-body" href="{% url 'login' %}">Log In</a>
+                </li>
+                {% endif %}
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control ml-xl-5 pl-xl-5 mr-3" type="search" placeholder="Search product"
                         aria-label="Search">

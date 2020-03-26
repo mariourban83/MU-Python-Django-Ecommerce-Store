@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +32,7 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'storages',
-    'orders'
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -44,6 +45,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 ROOT_URLCONF = 'eshop.urls'
 
 CART_SESSION_ID = 'cart'
