@@ -1,5 +1,6 @@
 
 import os
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,7 +17,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', ]
 
 
 # Application definition
@@ -29,10 +30,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'shop',
     'cart',
     'storages',
     'orders',
+    'search'
 ]
 
 MIDDLEWARE = [
@@ -75,13 +78,17 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shop',
+        'USER': 'shop',
+        'PASSWORD': 'shop',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

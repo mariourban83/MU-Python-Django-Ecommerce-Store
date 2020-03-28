@@ -74,13 +74,13 @@
                     <a class="nav-link text-body" href="{% url 'login' %}">Log In</a>
                 </li>
                 {% endif %}
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control ml-xl-5 pl-xl-5 mr-3" type="search" placeholder="Search product"
-                        aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0 text-white" style="background-color: #74AB8C" ;
-                        type="submit">Search</button>
-                </form>
-            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">
+                <input class="form-control ml-xl-5 pl-xl-5 mr-3" name='q' type="search" placeholder="Search product"
+                    aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0 text-white" style="background-color: #74AB8C" ;
+                    type="submit">Search</button>
+            </form>
+        </ul>
         </div>
     </nav>
     {% block content %}

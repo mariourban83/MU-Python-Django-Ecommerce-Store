@@ -1,0 +1,23 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+<h1>Search Results</h1>
+<hr>
+<p>
+    {% with result.count as total_results %}
+        Found {{ total_results }} result{{ total_results|pluralize }}
+    {% endwith %}
+</p>
+
+<br>
+<ul>
+  {% for product in result %}
+    <li>
+      {{ product.name }}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}
