@@ -27,7 +27,7 @@ def export_to_csv(modeladmin, request, queryset):
         for field in fields:
             value = getattr(obj, field.name)
             if isinstance(value, datetime.datetime):
-                value = value.strftime('%d/%m/%Y')
+                value = value.strftime('"%m/%d/%Y, %H:%M:%S"')
             data_row.append(value)
         writter.writerow(data_row)
     return response
@@ -39,10 +39,16 @@ class OrderItemInline(admin.TabularInline):
     raw_id_fields = ['product']
 
 
+def order_pdf(obj):
+    return mark_safe('<a href="{}">PDF</a>'.format(
+        reverse('orders:admin_order_pdf', args=[obj.id])))
+order_pdf.short_description = 'Invoice'
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', order_detail, 'first_name', 'last_name', 'email',
-                    'city', 'paid', 'created', 'updated']
+    list_display = ['id', order_detail, order_pdf, 'first_name', 'last_name',
+                    'email', 'city', 'paid', 'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
     actions = [export_to_csv]
