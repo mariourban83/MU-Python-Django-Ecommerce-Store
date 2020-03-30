@@ -15,7 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', ]
 
@@ -78,17 +78,18 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'shop',
-        'USER': 'shop',
-        'PASSWORD': 'shop',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'shop',
+            'USER': 'shop',
+            'PASSWORD': 'shop',
+            'HOST': 'localhost',
+            'PORT': '', }}
+else:
+    DATABASES = {'default': dj_database_url.parse(os.environ.get(
+                            'DATABASE_URL'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
