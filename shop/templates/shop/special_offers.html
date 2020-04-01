@@ -15,20 +15,25 @@
             <br>
             <div class="row">
               {% for product in products %}
-              <div class="col-8 col-sm-5 col-md-6 col-lg-4 m-2 mx-auto">
-                  <a class="text-dark" href="{{ product.get_absolute_url }}">
-                  <img class="img-fluid text-center" src="{{ product.image.url }}" alt="">
-                  <p class="text-center">{{ product.name }}</p>
-                  </a>
-                  <h5 class="text-center">{{ product.price }} Euro</h5>
-                  <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                <div class="card col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mx-auto border-white bg-light ">
+                    {% if product.image %}
+                      <img class="card-img-top pt-3" src="{{ product.image.url }}" alt="">
+                    {% else %}
+                      <img class="card-img-top " src="{% static 'img/no_image.png' %}" alt="no product image">
+                    {% endif %}
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-secondary btn-rounded">Details</a>
+                  </div>
+                  <form action="{% url 'cart:cart_add' product.id %}" method="post" class="form">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                    <input type="submit" value="Add to cart">
+                      <input class="text-white" type="submit" value="Add to cart" style="background-color: #74AB8C;">
                     </form>
                 </div>
               {% endfor %}
             </div>
-        </div>
-    {% endif %}
+        </div>           
+  {% endif %}
+  <br>
 {% endblock %}

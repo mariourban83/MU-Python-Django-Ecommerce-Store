@@ -2,26 +2,43 @@
 {% load static %}
 
 {% block content %}
-<div class="col-8 col-sm-5 col-md-6 col-lg-3 ">
-  <a class="text-dark" href="{{ product.get_absolute_url }}">
-    {% if product.image %}
+<div class="container mx-auto">
+  <div class="row mt-5">
+    <div class="col-sm-10 col-md-6 col-lg-4">
+      {% if product.image %}
       <img class="img-fluid text-center" src="{{ product.image.url }}" alt="">
-    {% else %}
+      {% else %}
       <img class="img-fluid text-center" src="{% static 'img/no_image.png' %}" alt="no product image">
-    {% endif %}
-  <p class="text-center">{{ product.name }}</p>
-  </a>
-  <h5 class="text-center">{{ product.price }} €</h5>
-  <form action="{% url 'cart:cart_add' product.id %}" method="post">
-    {{ cart_product_form }}
-    {% csrf_token %}
-    <input type="submit" value="Add to cart">
-    </form>
-</div>
-<div class="container text-center">
-  <a class="nav-link text-body" href="{% url 'shop:product_list' %}">
-    <button type="button" class="btn btn-lg text-white" style="background-color: #74AB8C;">Back to products</button>
-  </a>
+      {% endif %}
+    </div>
+    <div class="col-sm-10 col-md-6 col-lg-8">
+      <h2 class="text-left">{{ product.name }}</h2>
+      <h3 class="pt-3 pb-3"><strong>{{ product.price }} €</strong></h3>
+      <ul>
+        <li>{{ product.bullet1 }}</li>
+        <li>{{ product.bullet2 }}</li>
+        <li>{{ product.bullet3 }}</li>
+        <li>{{ product.bullet4 }}</li>
+        <li>{{ product.bullet5 }}</li>
+      </ul>
+      <form action="{% url 'cart:cart_add' product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-success ml-3" value="Add to cart">
+      </form>
+      <hr style="background-color: #74AB8C;">
+    </div>
+    <div class="container mt-5">
+      <h4>About the {{ product.name }} </h4>
+      <hr style="background-color: #74AB8C;">
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="container text-center">
+      <a class="nav-link text-body" href="{% url 'shop:product_list' %}">
+        <button type="button" class="btn btn-lg text-white" style="background-color: #74AB8C;">Back to products</button>
+      </a>
+    </div>
+  </div>
 </div>
 <br>
 {% endblock %}

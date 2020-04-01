@@ -35,6 +35,11 @@ class Product(models.Model):
     special_offer = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    bullet1 = models.TextField(blank=True)
+    bullet2 = models.TextField(blank=True)
+    bullet3 = models.TextField(blank=True)
+    bullet4 = models.TextField(blank=True)
+    bullet5 = models.TextField(blank=True)
 
     class Meta:
         ordering = ('name',)

@@ -5,7 +5,7 @@ from cart.forms import CartAddProductForm
 
 def home(request):
     title = "LR Ireland | Home"
-    products = Product.objects.all
+    products = Product.objects.all()
     return render(request, 'shop/home.html', {'products': products,
                                               'title': title})
 
