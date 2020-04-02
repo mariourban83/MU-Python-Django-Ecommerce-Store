@@ -12,7 +12,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = 'https://lr-onlineshop.herokuapp.com'
+ALLOWED_HOSTS = ['lr-onlineshop.herokuapp.com',
+                 '127.0.0.1']
 
 
 # Application definition
