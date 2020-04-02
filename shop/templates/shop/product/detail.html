@@ -21,6 +21,7 @@
         <li>{{ product.bullet4 }}</li>
         <li>{{ product.bullet5 }}</li>
       </ul>
+      <p>Content : {{ product.content }}</p>
       <form action="{% url 'cart:cart_add' product.id %}" method="post">
         {{ cart_product_form }}
         {% csrf_token %}
@@ -29,7 +30,7 @@
       <hr style="background-color: #74AB8C;">
     </div>
     <div class="container mt-5">
-      <h4>About the {{ product.name }} </h4>
+      <h4>About product : </h4>
       <hr style="background-color: #74AB8C;">
       <p>{{ product.description }}</p>
     </div>

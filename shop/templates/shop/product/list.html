@@ -28,7 +28,7 @@
                   <form action="{% url 'cart:cart_add' product.id %}" method="post" class="form">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                      <input class="text-white" type="submit" value="Add to cart" style="background-color: #74AB8C;">
+                      <input class="text-white btn-success" type="submit" value="Add to cart">
                     </form>
                 </div>
               {% endfor %}
