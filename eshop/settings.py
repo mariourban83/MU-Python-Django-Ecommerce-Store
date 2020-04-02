@@ -17,7 +17,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+if DEBUG:
+    ALLOWED_HOSTS = '*'
+else:
+    ALLOWED_HOSTS = 'https://lr-onlineshop.herokuapp.com'
 
 
 # Application definition
@@ -75,21 +78,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eshop.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'shop',
-            'USER': 'shop',
-            'PASSWORD': 'shop',
-            'HOST': 'localhost',
-            'PORT': '', }}
-else:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get(
-                            'DATABASE_URL'))}
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'shop',
+#             'USER': 'shop',
+#             'PASSWORD': 'shop',
+#             'HOST': 'localhost',
+#             'PORT': '', }}
+# else:
+DATABASES = {'default': dj_database_url.parse(os.environ.get(
+             'DATABASE_URL'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
