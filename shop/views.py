@@ -5,9 +5,12 @@ from cart.forms import CartAddProductForm
 
 def home(request):
     title = "LR Ireland | Home"
-    products = Product.objects.all()
-    return render(request, 'shop/home.html', {'products': products,
-                                              'title': title})
+    products = Product.objects.filter(bestseller=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'shop/home.html',
+                           {'products': products,
+                            'cart_product_form': cart_product_form,
+                            'title': title})
 
 
 def contact(request):

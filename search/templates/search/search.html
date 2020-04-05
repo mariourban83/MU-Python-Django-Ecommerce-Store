@@ -3,21 +3,33 @@
 
 {% block content %}
 <div class="container">
-<h1>Search Results</h1>
-<hr>
-<p>
+  <h1>Search Results</h1>
+  <hr>
+  <h4>
     {% with result.count as total_results %}
-        Found {{ total_results }} result{{ total_results|pluralize }}
+    Found {{ total_results }} result{{ total_results|pluralize }}
     {% endwith %}
-</p>
+  </h4>
 
-<br>
-<ul>
-  {% for product in result %}
+  <br>
+
+  <ol>
+    {% for product in result %}
     <li>
-      {{ product.name }}
+      <a class="nav-link text-body" href="{{ product.get_absolute_url }}" role="button">
+        {% if product.image %}
+        <img class="img-fluid text-center" src="{{ product.image.url }}" alt="Image of {{ product.name }} product"
+          width="150px">
+        {% else %}
+        <img class="img-fluid text-center" src="{% static 'img/no_image.png' %}" alt="no product image" width="150px">
+        {% endif %}
+        <br>
+        <h5><u>{{ product.name }}</u></h5>
+      </a>
+      <hr>
     </li>
-  {% endfor %}
-</ul>
-</div>
-{% endblock %}
+    <br>
+    {% endfor %}
+  </ol>
+
+  {% endblock %}

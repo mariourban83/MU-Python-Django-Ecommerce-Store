@@ -29,25 +29,16 @@
             <p class="text-center text-white pb-2">Independent Partner | K.Simonova</p>
         </a>
     </div>
-    <div class="container-fluid text-center">
+    <div class="container">
         <nav class="navbar navbar-expand-xl navbar-light bg-light">
-            <button class="navbar-toggler text-left border-light" type="button" data-toggle="collapse"
+            <button class="navbar-toggler border-light" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <i class="fas fa-bars fa-lg" style="color:#74AB8C"></i></button>
-            <button class="navbar-toggler text-right border-light" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-search fa-lg" style="color:#74AB8C"></i></button>
+                <i class="fas fa-bars fa-lg" style="color:#74AB8C"></i>
+            </button>
 
-            <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <form class="form-inline justify-content-center" action="{% url 'search' %}" method="get">
-                        <input class="form-control mr-2" name='q' type="search" placeholder="Search in store"
-                            aria-label="Search" style="max-width: 200px;">
-                        <button class="btn btn-outline-light text-white align-center mr-5"
-                            style="background-color: #74AB8C" ; type="submit">Search</button>
-                    </form>
                     <li class="nav-item  border-right p-2">
                         <a class="nav-link text-body" href="{% url 'shop:home' %}">Home</a>
                     </li>
@@ -79,9 +70,13 @@
                     {% endif %}
                 </ul>
             </div>
+            <form class="form-inline" action="{% url 'search' %}" method="get">
+                <input class="form-control" name='q' type="search" placeholder="Search in store"
+                    aria-label="Search" style="max-width: 150px;"><i class="fas fa-search px-2"></i>
+            </form>
         </nav>
     </div>
-    <div class="container text-center my-2 py-2 ">
+    <div class="container text-right my-2 py-2 ">
         {% if user.is_authenticated %}
         <i class="fas fa-user fa-lg pr-3" style="color:#74AB8C"></i>
 
