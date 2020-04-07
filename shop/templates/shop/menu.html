@@ -1,5 +1,5 @@
 {% block menu %}
-<div class="container">
+<div class="container px-0">
     <nav class="navbar navbar-expand-xl navbar-light bg-light">
         <button class="navbar-toggler border-light" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -7,7 +7,7 @@
             <i class="fas fa-bars fa-lg" style="color:#74AB8C"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse px-0 justify-content-around" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item  border-right p-2">
                     <a class="nav-link text-body" href="{% url 'shop:home' %}">Home</a>
@@ -18,8 +18,14 @@
                 <li class="nav-item  border-right p-2">
                     <a class="nav-link text-body" href="{% url 'shop:product_list' %}">ALL Products</a>
                 </li>
-                <li class="nav-item border-right p-2">
-                    <a class="nav-link text-body" href="#">Categories</a>
+                <li class="nav-item border-right p-2 dropdown">
+                    <a class="nav-link text-body" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'shop:product_list' %}">All</a>
+                            {% for c in categories %}
+                            <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                            {% endfor %}
+                    </div>
                 </li>
                 <li class="nav-item border-right p-2">
                     <a class="nav-link text-body" href="{% url 'shop:contact' %}">Contact Us</a>

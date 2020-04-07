@@ -24,12 +24,14 @@
 </head>
 
 <body>
-    <div class="container-fluid green-bg" id="header-top">
+    <div class="container-fluid px-0 bg-white">
+    <div class="container-fluid green-bg m-0 p-0">
         <a class="nav-link p-0" href="{% url 'shop:home' %}">
             <h2 class="text-center text-white pt-2 pb-0 mb-0"><strong>LR | Ireland</strong></h2>
             <p class="text-center text-white pb-2">Independent Partner | K.Simonova</p>
         </a>
     </div>
+    
 
     {% include 'shop/menu.html' %}
 
@@ -50,8 +52,10 @@
         {% endif %}
     </div>
 
+    
     {% block content %}
     {% endblock %}
+     
 
 
     <!-- Optional JavaScript -->
@@ -65,11 +69,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+
     <footer>
         <div class="container-fluid green-bg px-0">
             <p class="text-center text-white mb-0">Copyright@ LR | IRELAND 2020</p>
         </div>
     </footer>
+    </div> 
 </body>
 
 </html>

@@ -3,13 +3,19 @@ from .models import Category, Product
 from cart.forms import CartAddProductForm
 
 
-def home(request):
+def home(request, category_slug=None):
     title = "LR Ireland | Home"
     products = Product.objects.filter(bestseller=True)
-    cart_product_form = CartAddProductForm()
+    category = None
+    categories = Category.objects.all()
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+
     return render(request, 'shop/home.html',
                            {'products': products,
-                            'cart_product_form': cart_product_form,
+                            'category': category,
+                            'categories': categories,
                             'title': title})
 
 
