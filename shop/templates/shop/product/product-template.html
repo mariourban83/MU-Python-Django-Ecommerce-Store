@@ -1,0 +1,22 @@
+{% load static %}
+{% if products %}
+<div class="container text-center">
+    <br>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2 mx-auto border-white rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+            <a href="{{ product.get_absolute_url }}"class="text-body text-decoration-none ">
+            <h6 class="pt-2">{{ product.name }}</h6>
+            {% if product.image %}
+            <img class="card-img-top pt-3" src="{{ product.image.url }}" alt="image of {{ product.name }} product">
+            {% else %}
+            <img class="card-img-top pt-3" src="{% static 'img/no_image.png' %}" alt="no product image">
+            {% endif %}
+            <h5 class="text-right py-3 pr-3 green font-weight-bold">{{ product.price }} €
+            </h5>
+        </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

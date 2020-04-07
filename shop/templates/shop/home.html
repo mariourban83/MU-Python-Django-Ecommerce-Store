@@ -13,29 +13,7 @@
     <h2 class="text-center">Bestsellers</h2>
     <hr>
 </div>
-{% if products %}
-<div class="container text-center">
-    <br>
-    <div class="row">
-        {% for product in products %}
-        <div class="card col-8 col-md-6 col-lg-3 col-xl-2 mx-auto border-white bg-light ">
-            {% if product.image %}
-            <img class="card-img-top pt-3" src="{{ product.image.url }}" alt="image of {{ product.name }} product">
-            {% else %}
-            <img class="card-img-top pt-3" src="{% static 'img/no_image.png' %}" alt="no product image">
-            {% endif %}
-            <div class="card-body">
-                <h6 class="card-title">{{ product.name }}</h6>
-            </div>
-            <div class="mb-2 pb-2">
-                <p class="card-title">{{ product.price }} €</p>
-                <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-success btn-rounded">Details</a>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-{% endif %}
+{% include 'shop/product/product-template.html' %}
 <br>
 <div class="container">
     <hr>

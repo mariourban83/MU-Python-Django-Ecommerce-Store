@@ -10,30 +10,6 @@
   <hr>
 </div>
 
-  {% if products %}
-        <div class="container text-center">
-            <br>
-            <div class="row">
-              {% for product in products %}
-                <div class="card col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mx-auto border-white bg-light ">
-                    {% if product.image %}
-                      <img class="card-img-top pt-3" src="{{ product.image.url }}" alt="">
-                    {% else %}
-                      <img class="card-img-top " src="{% static 'img/no_image.png' %}" alt="no product image">
-                    {% endif %}
-                  <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-secondary btn-rounded">Details</a>
-                  </div>
-                  <form action="{% url 'cart:cart_add' product.id %}" method="post" class="form">
-                    {{ cart_product_form }}
-                    {% csrf_token %}
-                      <input class="text-white btn-success" type="submit" value="Add to cart">
-                    </form>
-                </div>
-              {% endfor %}
-            </div>
-        </div>           
-  {% endif %}
+{% include 'shop/product/product-template.html' %}
   <br>
 {% endblock %}
