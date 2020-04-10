@@ -30,29 +30,8 @@
             <h2 class="text-center text-white pt-2 pb-0 mb-0"><strong>LR | Ireland</strong></h2>
             <p class="text-center text-white pb-2">Independent Partner | K.Simonova</p>
         </a>
-    </div>
-    
-
-    {% include 'shop/menu.html' %}
-
-    <div class="container text-right my-2 py-2 ">
-        {% if user.is_authenticated %}
-        <i class="fas fa-user fa-lg pr-3 green"></i>
-
-        {% with total_items=cart|length %}
-        {% if cart|length > 0 %}
-        <a class="font-weight-bold" href="{% url 'cart:cart_detail' %}" style="color:rgb(0, 0, 0)">
-            {{ total_items }} Item{{ total_items|pluralize }} in cart, Total
-            {{ cart.get_total_price }}€
-        </a>
-        {% else %}
-        Your cart is empty
-        {% endif %}
-        {% endwith %}
-        {% endif %}
-    </div>
-
-    
+</div>
+{% include 'shop/menu.html' %}
     {% block content %}
     {% endblock %}
      

@@ -4,64 +4,71 @@
 {% block content %}
 <div class="container">
   <br>
-  <h2 class="text-center">Your shopping cart</h2>
+  <h2>Shopping cart</h2>
   <br>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Remove</th>
-        <th>Unit price</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in cart %}
-        {% with product=item.product %}
-          <tr>
-            <td>
-              <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}
-                            {{ product.image.url }}
-                          {% else %}
-                            {% static 'img/no_image.png' %}
-                          {% endif %}" width="100px">
-              </a>
-            </td>
-            <td>{{ product.name }}</td>
-            <td>
-              <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
-                {{ item.update_quantity_form.update }}
-                <input type="submit" value="Update">
-                {% csrf_token %}
-              </form>
-            </td>
-            <td><a href="{% url 'cart:cart_remove' product.id %}">Remove</a></td>
-            <td class="num">{{ item.price }} €</td>
-            <td class="num">{{ item.total_price }} €</td>
-          </tr>
-        {% endwith %}
-      {% endfor %}
-      <tr class="total">
-        <td>Total</td>
-        <td colspan="4"></td>
-        <td class="num">{{ cart.get_total_price }} €</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="container">
-    
+    {% if not user.is_authenticated %}
+    <p class="d-inline pr-5">Already have account?</p>
+    <a href="{% url 'login' %}">
+      <button class="btn border-secondary rounded-pill px-5" type="submit">SIGN IN</button>
+    </a>
+    {% endif %} <br>
+    <hr>
   </div>
-<div class="container text-right">
-  <a class="nav-link text-body" href="{% url 'shop:product_list' %}">
-    <button type="button" class="btn text-white" style="background-color: #74AB8C;">Continue Shopping</button>
-  </a>
-  <a class="nav-link text-body" href="{% url 'orders:order_create' %}">
-    <button type="button" class="btn text-white" style="background-color: #74AB8C;">Checkout</button>
-  </a>
+  <div class="row">
+    <div class="col-12 col-md-6 pt-2 text-center">
+      {% for item in cart %}
+      {% with product=item.product %}
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{% if product.image %}
+                        {{ product.image.url }}
+                    {% else %}
+                        {% static 'img/no_image.png' %}
+                    {% endif %}" width="125px">
+      </a>
+      <p>{{ product.name }}</p>
+      <form action="{% url 'cart:cart_add' product.id %}" method="post">
+        {{ item.update_quantity_form.quantity }}
+        {{ item.update_quantity_form.update }}
+        <input type="submit" value="Update" class="border-secondary rounded-pill ml-2 px-3">
+        {% csrf_token %}
+        <button class="border-secondary rounded-pill mr-0">
+          <a class=" text-danger" href="{% url 'cart:cart_remove' product.id %}">Remove</a>
+        </button>
+        <p class="mt-2">Item Total : {{ item.total_price }} €</p>
+      </form>
+      <hr>
+      {% endwith %}
+      {% endfor %}
+    </div>
+
+    <div class="col-12 col-md-5 pt-2 mx-center bg-light text-body text-center" style="height:30%">
+      <p>Have you recieved coupon from us? Enter it here</p>
+      <div class="input-group input-group-sm mb-3 px-5">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Code</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <h4 class="m-3"><strong> Subtotal : {{ cart.get_total_price }} €</strong></h4>
+      <small>Shipping Included!</small>
+      <hr>
+      <img src="{% static 'img/paymment_icons.png' %}" width="150px" alt="image">
+      <img src="{% static 'img/norton_seal.png' %}" width="150px" alt="image">
+      <hr>
+      <a class="nav-link text-body pt-5" href="{% url 'orders:order_create' %}">
+        <button type="button" class="btn-dark rounded-pill btn-lg btn-block text-white">Proceed to Checkout</button>
+      </a>
+      <p>or</p>
+      <a class="nav-link text-body " href="{% url 'shop:product_list' %}">
+        <button type="button" class="btn-lg btn-block rounded-pill text-white"
+          style="background-color: #74AB8C;">Continue Shopping</button>
+      </a>
+    </div>
+  </div>
+  <br>
 </div>
 </div>
 {% endblock %}
