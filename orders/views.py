@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -9,7 +10,6 @@ import weasyprint
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def order_create(request):
     cart = Cart(request)
     title = 'Order Summary'
@@ -22,9 +22,12 @@ def order_create(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
+            request.session['order_id'] = order.id
+            print(order.id)
             cart.clear()
-            return render(request, 'orders/created.html',
-                          {'order': order, 'title': title})
+            return redirect(reverse('payments:payment'),
+                            {'order': order, 'title': title,
+                            'order.id': order.id},)
     else:
         form = OrderCreateForm()
         title = 'Order Summary'

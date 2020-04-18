@@ -1,0 +1,49 @@
+{% block footer %}
+<style>
+</style>
+<footer>
+    <div class="container-fluid green-bg p-0">
+        <div class="container">
+            <div class="row ">
+                <div class="col-8 col-md-4 text-center mx-auto">
+                    <ul class="navbar-nav pt-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white lead pt-1" href="{% url 'shop:home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white lead pt-1" href="{% url 'shop:faq' %}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white lead pt-1" href="{% url 'shop:contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white lead pt-1" href="{% url 'shop:contact' %}">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8 col-md-4 text-center mx-auto">
+                    <p class="pt-2 text-white">Quick Info:</p>
+                    <p><a class="text-white" href="tel:123-456-7890"> <i class="fas fa-phone-square-alt fa-lg"></i> Phone: 123-456-7890</a></p>
+                    <p><a class="text-white" href="mailto:helpdesk@lr-ireland.ie"> <i class="fas fa-envelope fa-lg"></i> Mail: helpdesk@lr-ireland.ie</a></p>
+                    <p class="text-white"><i class="fas fa-clock fa-lg"></i> Mon - Fri: 9am - 5pm EST</p>
+                </div>
+                <div class="col-8 col-md-4 text-center mx-auto">
+                    <p class="pt-2 text-white">Find Us:</p>
+                    <p><a class="text-white" href="{% url 'shop:contact' %}"><i class="fas fa-map-marked-alt fa-lg"></i> On map</a></p>
+                    <p class="pt-2 text-white">Social:</p>
+                    <p class="text-white">
+                        <i class="fab fa-facebook fa-2x pr-2"></i>
+                        <i class="fab fa-twitter fa-2x pr-2"></i>
+                        <i class="fab fa-pinterest fa-2x pr-2"></i>
+                        <i class="fab fa-instagram fa-2x pr-2"></i>
+                        <i class="fab fa-youtube fa-2x"></i>
+
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center text-white mb-0 pb-0"><small>Copyright@ LR | IRELAND 2020</small></p>
+        </div>
+    </div>
+</footer>
+{% endblock footer %}

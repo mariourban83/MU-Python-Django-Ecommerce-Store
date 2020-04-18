@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<br>
+<h3 class="text-center">Checkout option</h3>
+<hr>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto text-center" style="height: 100vh">
+            {% if user.is_authenticated %}
+            <p>You are logged in {{ user }}</p>
+            <p><a href="{% url 'orders:order_create' %}">Continue</a></p>
+            {% else %}
+            <p><a href="{% url 'login' %}">Sign in</a> Or 
+            <a href="{% url 'orders:order_create' %}">Continue as Guest</a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
