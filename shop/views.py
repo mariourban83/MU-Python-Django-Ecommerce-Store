@@ -8,10 +8,6 @@ def home(request, category_slug=None):
     products = Product.objects.filter(bestseller=True)
     category = None
     categories = Category.objects.all()
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
-
     return render(request, 'shop/home.html',
                            {'products': products,
                             'category': category,
@@ -29,13 +25,17 @@ def faq(request):
     return render(request, 'shop/faq.html', {'title': title})
 
 
+def about(request):
+    title = "LR Ireland | About"
+    return render(request, 'shop/about.html', {'title': title})
+
+
 def product_list(request, category_slug=None):
     """
     Product Catalog view to display all available products
     or to display products filtered by category.
     """
     title = "LR Ireland | All Products"
-    category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
     cart_product_form = CartAddProductForm()
@@ -44,7 +44,6 @@ def product_list(request, category_slug=None):
         products = products.filter(category=category)
     return render(request, 'shop/product/list.html',
                   {'products': products,
-                   'category': category,
                    'categories': categories,
                    'cart_product_form': cart_product_form,
                    'title': title})
@@ -57,9 +56,13 @@ def product_detail(request, id, slug):
     """
     title = "LR Ireland | Product Detail"
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    category = None
+    categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/product/detail.html',
                   {'product': product,
+                   'category': category,
+                   'categories': categories,
                    'cart_product_form': cart_product_form,
                    'title': title})
 
@@ -67,8 +70,10 @@ def product_detail(request, id, slug):
 def special_offers(request):
     title = "LR Ireland | Special Offers"
     products = Product.objects.filter(special_offer=True)
+    categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/special_offers.html',
                            {'products': products,
+                            'categories': categories,
                             'cart_product_form': cart_product_form,
                             'title': title})

@@ -3,13 +3,19 @@
 {% block content %}
 <br>
 <div class="container px-0">
-  <img class="img-fluid" src="{% static 'img/banner3.jpg' %}" alt="image">
+  <hr>
+  <h3 class="text-center green"> Our Top Quality German Products</h3>
+  <hr>
   <br>
-  <hr>
-  <h3 class="text-center">Top Quality German Products</h3>
-  <hr>
+  <p>
+    <p>Filter by Category:</p>
+      <a class="btn btn-light" href="{% url 'shop:product_list' %}">All Products</a>
+    {% for c in categories %}
+    <a class="btn btn-light" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+    {% endfor %}
+
 </div>
 
 {% include 'shop/product/product-template.html' %}
- <br>
+<br>
 {% endblock %}

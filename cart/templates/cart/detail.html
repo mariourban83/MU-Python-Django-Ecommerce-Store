@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container mb-5">
   <br>
   <h2>Shopping cart</h2>
   <br>
@@ -33,7 +33,7 @@
       {% endfor %}
     </div>
 
-    <div class="col-12 col-md-5 pt-2 mx-center bg-light text-body text-center" style="height:30%">
+    <div class="col-12 col-md-5 pt-2 mb-3 bg-light text-body text-center">
       <p>Have you recieved coupon from us? Enter it here</p>
       <div class="input-group input-group-sm mb-3 px-5">
         <div class="input-group-prepend">
@@ -49,48 +49,16 @@
       <img src="{% static 'img/paymment_icons.png' %}" width="150px" alt="image">
       <img src="{% static 'img/norton_seal.png' %}" width="150px" alt="image">
       <hr>
-      <a class="nav-link text-body pt-5" href="{% url 'payments:checkout_options' %}">
+      <a class="nav-link text-body py-5" href="{% url 'payments:checkout_options' %}">
         <button type="button" class="btn-dark rounded-pill btn-lg px-5 text-white">Checkout</button>
       </a>
-      <div class="col-6 mx-auto" id="paypal-button-container"></div>
-      <script
-      src="https://www.paypal.com/sdk/js?client-id=AQFXRydXlXyxacp4d1B1zLLo-2MFWczTc1OVUd2WrOB5wmS2KOpHPAiJLzH0SAjpbOPXKtl8ntovenD5">
-      </script>
-  
-  <script>
-    // Render the PayPal button into #paypal-button-container
-    paypal.Buttons({
-
-        // Set up the transaction
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: "{% for items in cart %}{{ cart.get_total_price }}{% endfor %}"
-                    }
-                }]
-            });
-        },
-
-        // Finalize the transaction
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Show a success message to the buyer
-                alert('Transaction completed by ' + details.payer.name.given_name + '!');
-            });
-        }
-
-
-    }).render('#paypal-button-container');
-</script>
-      <p>or</p>
-      <a class="nav-link text-body " href="{% url 'shop:product_list' %}">
-        <button type="button" class="btn-lg rounded-pill text-white"
-          style="background-color: #74AB8C;">Continue Shopping</button>
-      </a>
+        <p>or</p>
+        <a class="nav-link text-body m-3" href="{% url 'shop:product_list' %}">
+          <button type="button" class="btn-lg rounded-pill text-white" style="background-color: #74AB8C;">Continue
+            Shopping</button>
+        </a>
     </div>
+    <br>
   </div>
-  <br>
-</div>
 </div>
 {% endblock %}

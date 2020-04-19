@@ -15,6 +15,7 @@ def order_create(request):
     title = 'Order Summary'
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
+        print(form)
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -22,8 +23,6 @@ def order_create(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
-            request.session['order_id'] = order.id
-            print(order.id)
             cart.clear()
             return redirect(reverse('payments:payment'),
                             {'order': order, 'title': title,
