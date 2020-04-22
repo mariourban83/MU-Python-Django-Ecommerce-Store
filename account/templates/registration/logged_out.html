@@ -3,7 +3,10 @@
 <div class="container">
     <br>
     <p>You have been successfully logged out.</p>
+    <br>
     <p>Click here to <a href="{% url 'login' %}">Log back in</a></p>
+    <br>
+    <p>or go back home <a href="{% url 'shop:home' %}">Home</a></p>
 </div>
 <br>
 {% endblock %}

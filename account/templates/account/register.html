@@ -1,15 +1,14 @@
 {% extends "shop/base.html" %}
 {% block content %}
-<div class="col-10 col-md-6 text-center mx-auto bg-light p-2 m-3">
+<div class="col-10 col-md-6 text-left mx-auto bg-light p-2 m-3">
     <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
+    <p>Please, create new account using the following form:</p>
     <form action="." method="post">
         {% for field in user_form %}
         <div class="fieldWrapper">
             {{ field.errors }}
             {{ field.label_tag }} <br>
             {{ field }}
-            {% endif %}
         </div>
         <br>
         {% endfor %}
@@ -17,4 +16,4 @@
         <input class="text-white lead green-bg p-2 mb-3 rounded" type="submit" value="Create Account">
     </form>
 </div>
-    {% endblock %}
+{% endblock %}

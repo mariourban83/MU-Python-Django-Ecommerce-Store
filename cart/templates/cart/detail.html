@@ -31,6 +31,10 @@
       <hr>
       {% endwith %}
       {% endfor %}
+      <a class="nav-link text-body m-3" href="{% url 'shop:product_list' %}">
+        <button type="button" class="btn-lg rounded-pill text-white" style="background-color: #74AB8C;">Continue
+          Shopping</button>
+      </a>
     </div>
 
     <div class="col-12 col-md-5 pt-2 mb-3 bg-light text-body text-center">
@@ -49,14 +53,14 @@
       <img src="{% static 'img/paymment_icons.png' %}" width="150px" alt="image">
       <img src="{% static 'img/norton_seal.png' %}" width="150px" alt="image">
       <hr>
-      <a class="nav-link text-body py-5" href="{% url 'payments:checkout_options' %}">
+      <a class="nav-link text-body py-5" 
+        {% if user.is_authenticated %}
+          href="{% url 'orders:order_create' %}"
+        {% else %}
+          href="{% url 'payments:checkout_options' %}"
+        {% endif %}>
         <button type="button" class="btn-dark rounded-pill btn-lg px-5 text-white">Checkout</button>
       </a>
-        <p>or</p>
-        <a class="nav-link text-body m-3" href="{% url 'shop:product_list' %}">
-          <button type="button" class="btn-lg rounded-pill text-white" style="background-color: #74AB8C;">Continue
-            Shopping</button>
-        </a>
     </div>
     <br>
   </div>

@@ -16,9 +16,9 @@
             {{ form.as_p }}
             {% csrf_token %}
             {% if request.GET.next %}
-                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
             {% endif %}
-                <p><input type="submit" value="Log-in"></p>
+            <p><input type="submit" value="Log-in"></p>
         </form>
     </div>
 </div>

@@ -11,27 +11,28 @@
                 {% for field in form %}
                 <div class="row">
                     <div class="col-12">
-                        {{ field.label_tag }}
                         {{ field.errors }}
+                        {{ field.label_tag }}
                     </div>
                     <div class="col-12">
                         {{ field }}
                     </div>
                 </div>
                 {% endfor %}
-                <button class="btn btn-success rounded m-3" type="submit" value="Place order">Place Order</button>
+                <button class="btn btn-success rounded m-3" type="submit" value="Place order">Continue to
+                    Payment</button>
             </form>
         </div>
-<div class="col-12 col-md-6">
+        <div class="col-12 col-md-6">
             <br>
             <h3 class="pb-3">Summary :</h3>
             {% for item in cart %}
-            <p>{{ item.quantity }} x {{ item.product.name }},  {{ item.total_price }} €</p>
+            <p>{{ item.quantity }} x {{ item.product.name }}, {{ item.total_price }} €</p>
             {% endfor %}
             <br>
             <div class="container border-bottom border-secondary">
-            <h4>Total: {{ cart.get_total_price }} € </h4>
-            <small>Shipping Free for orders over 50 €</small>
+                <h4>Total: {{ cart.get_total_price }} € </h4>
+                <small>Shipping Free for orders over 50 €</small>
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from cart.cart import Cart
+from django.conf import settings
+import stripe
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def checkout_options(request):
@@ -12,6 +15,28 @@ def checkout_options(request):
 def payment(request):
     title = 'LR | Payment'
     cart = Cart(request)
-    print(cart)
+    total_price = cart.get_total_price()
+    CLIENT_ID = settings.CLIENT_ID  # Paypal
+    pubKey = settings.STRIPE_PUBLISHABLE_KEY  # Stripe
+    if request.method == 'POST':
+        pubKey = pubKey
+        charge = stripe.Charge.create(
+            amount=int(total_price * 100),
+            currency='EUR',
+            source=request.POST['stripeToken']
+        )
+        print(request.POST)
+        cart.clear()
+        return render(request, 'payments/payment_success.html',
+                      {'pubKey': pubKey})
     return render(request, 'payments/payment.html',
-                  {'title': title})
+                  {'title': title,
+                   'cart': cart,
+                   'total_price': total_price,
+                   'CLIENT_ID': CLIENT_ID,
+                   'pubKey': pubKey})
+
+
+def payment_success(request):
+    title = 'LR | Payment Success'
+    return render(request, 'payments/payment_success.html')

@@ -2,5 +2,43 @@
 {% load static %}
 
 {% block content %}
-<p>{{ order }}</p>
+<hr>
+<br>
+<h4>{% if user.is_authenticated %}
+    {{ user }}
+    {% else %}
+    Guest
+    {% endif %}, how would you wish to pay for your order today?
+</h4>
+<br>
+<hr>
+<h4 class="">Total: {{ cart.get_total_price }},- Euro</h4>
+<br>
+<p class="lead">Please, select payment method: </p>
+<div class="row">
+
+    <div class="col-10 m-2 p-2">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ pubKey }}"
+                data-description="LR | Ireland order" data-locale="auto" data-amount="{{get_total_price }}">
+            </script>
+            <p class=""><img src="{% static 'img/stripe_icon.png' %}" alt=""></p>
+        </form>
+        <p>or</p>
+    </div>
+
+    <div class="col-3 text-center">
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id={{ CLIENT_ID }}">
+    </script>
+
+    <script>
+        paypal.Buttons().render('#paypal-button-container');
+    </script>
+
+</div>
+<hr>
 {% endblock %}

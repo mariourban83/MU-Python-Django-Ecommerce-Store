@@ -7,7 +7,9 @@ from cart.cart import Cart
 from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import render_to_string
 import weasyprint
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 def order_create(request):
@@ -23,10 +25,14 @@ def order_create(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
-            cart.clear()
+            orders = Order.objects.all()
+            user = get_user_model()
+            user.objects.all()
+            users = User.objects.all()
             return redirect(reverse('payments:payment'),
                             {'order': order, 'title': title,
-                            'order.id': order.id},)
+                             'orders': orders,
+                             'users': users},)
     else:
         form = OrderCreateForm()
         title = 'Order Summary'
