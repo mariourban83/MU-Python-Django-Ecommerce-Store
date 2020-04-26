@@ -1,25 +1,39 @@
 {% extends "shop/base.html" %}
 {% block content %}
-<div class="container">
-    <h1>Log-in</h1>
-    {% if form.errors %}
-    <h5 class="text-danger">
-        Your username and password didn't match.
-        Please try again.
-    </h5>
-    {% else %}
-    <p>Please, use the following form to log-in. If you don't have an account <a href="{% url 'register' %}">register
-            here</a></p>
-    {% endif %}
-    <div class="login-form">
-        <form action="{% url 'login' %}" method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            {% if request.GET.next %}
-            <input type="hidden" name="next" value="{{ request.GET.next }}">
-            {% endif %}
-            <p><input type="submit" value="Log-in"></p>
-        </form>
+<div class="container my-3" id="loginFormContainer">
+    <div class="col-12 col-md-6 mx-auto bg-light text-center">
+        <br>
+        <h1>Log-in</h1>
+        <hr>
+        {% if form.errors %}
+        <h5 class="text-danger">
+            Your username and password didn't match.
+            Please try again.
+        </h5>
+        {% else %}
+        <p>Please, use the following form to log-in.<br>If you don't have an account <a
+                href="{% url 'register' %}">register here</a></p>
+        {% endif %}
+        <div class="login-form pt-3 text-center">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row">
+                    <div class="col-12">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-12">
+                        {{ field }}
+                    </div>
+                </div>
+                {% endfor %}
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+                <button class="btn btn-secondary rounded m-3" type="submit" value="Log-in">Log in</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

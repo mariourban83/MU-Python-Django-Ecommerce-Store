@@ -7,7 +7,6 @@ from cart.cart import Cart
 from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import render_to_string
 import weasyprint
-# from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 

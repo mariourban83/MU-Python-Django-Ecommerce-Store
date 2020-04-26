@@ -1,6 +1,6 @@
 {% extends "shop/base.html" %}
 {% block content %}
-
+{% if cart %}
 <div class="container text-left">
     <div class="row">
         <div class="col-12 col-md-6">
@@ -37,6 +37,12 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="col-12 col-md-6 mx-auto green-bg my-5">
+    <p class="lead text-center text-white p-5">Sorry, you have nothing in cart, therefore you can't place an order. Add
+        an item to the cart first and then continue with checkout proccess!<br>
+        <a class="lead text-dark text-center" href="{% url 'shop:product_list' %}">Back to Products -></a>
+    </p>
 </div>
-
+{% endif %}
 {% endblock %}

@@ -12,24 +12,22 @@
   </h4>
 
   <br>
-
-  <ol>
+  <div class="row justify-content-left">
     {% for product in result %}
-    <li>
+    <div class="col-6 col-md-4 col-lg-3">
       <a class="nav-link text-body" href="{{ product.get_absolute_url }}" role="button">
         {% if product.image %}
         <img class="img-fluid text-center" src="{{ product.image.url }}" alt="Image of {{ product.name }} product"
-          width="150px">
+          max-width="200px">
         {% else %}
         <img class="img-fluid text-center" src="{% static 'img/no_image.png' %}" alt="no product image" width="150px">
         {% endif %}
         <br>
-        <h5><u>{{ product.name }}</u></h5>
+        <p class="text-center">{{ product.name }}</p>
       </a>
-      <hr>
-    </li>
+    </div>
     <br>
     {% endfor %}
-  </ol>
-
-  {% endblock %}
+  </div>
+</div>
+{% endblock %}

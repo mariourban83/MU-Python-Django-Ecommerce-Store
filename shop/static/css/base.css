@@ -1,10 +1,21 @@
+/* Global Settings */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
 body { 
     margin:0;
     padding:0;
+    font-family: 'Poppins', sans-serif !important;
 }
 .green {
     color: #74AB8C;
 }
 .green-bg {
     background-color: #74AB8C;;
+}
+/* End of Global settings */
+
+/* Login, Logout pages */
+#loginFormContainer, #logoutPageContainer {
+    height : 70vh;
 }

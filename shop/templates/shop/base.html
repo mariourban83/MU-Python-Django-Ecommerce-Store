@@ -31,6 +31,18 @@
                 <p class="text-center text-white pb-2">Independent Partner | K.Simonova</p>
             </a>
         </div>
+        <div class="col-11 col-md-4 mx-auto">
+            <form method='GET' action='{% url "search" %}' class="form my-2 my-lg-0">
+                <div class='input-group'>
+                    <input class="form-control" type="text" placeholder="Search in shop..." name='q' aria-label="Search"
+                        value='{{ request.GET.q }}'>
+                    <span class='input-group-btn'>
+    <button class="btn btn-success ml-2 px-3" type="submit" style="background-color:#74AB8C"><i class="fas fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <hr>
         {% include 'shop/menu.html' %}
         {% block content %}
         {% endblock %}
@@ -46,6 +58,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     </div>
+    <br>
     {% include 'shop/footer.html' %}
     {% block footer %}
     {% endblock footer %}

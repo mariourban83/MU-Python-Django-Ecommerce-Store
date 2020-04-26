@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['lr-onlineshop.herokuapp.com',
                  '127.0.0.1',
@@ -73,18 +73,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eshop.wsgi.application'
 
 
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'shop',
-#             'USER': 'shop',
-#             'PASSWORD': 'shop',
-#             'HOST': 'localhost',
-#             'PORT': '', }}
-# else:
-DATABASES = {'default': dj_database_url.parse(os.environ.get(
-             'DATABASE_URL'))}
+if "DATABASE_URL" in os.environ:
+    DATABASES = {'default': dj_database_url.parse
+                 (os.environ.get('DATABASE_URL'))}
+else:
+    print("Database URL not found. Using SQLite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -120,8 +119,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
-
+# Amazon Set-up
 AWS_S3_OBJECT_PARAMETERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'CacheControl': 'max-age=94608000'

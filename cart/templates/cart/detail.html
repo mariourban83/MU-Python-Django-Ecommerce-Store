@@ -7,7 +7,8 @@
   <h2>Shopping cart</h2>
   <br>
   <div class="row">
-    <div class="col-12 col-md-6 pt-2 text-center border-right">
+    <div class="col-12 col-md-6 pt-2 text-center">
+      {% if cart %}
       {% for item in cart %}
       {% with product=item.product %}
       <a href="{{ product.get_absolute_url }}">
@@ -32,7 +33,7 @@
       {% endwith %}
       {% endfor %}
       <a class="nav-link text-body m-3" href="{% url 'shop:product_list' %}">
-        <button type="button" class="btn-lg rounded-pill text-white" style="background-color: #74AB8C;">Continue
+        <button type="button" class="btn rounded-pill text-white px-3" style="background-color: #74AB8C;">Continue
           Shopping</button>
       </a>
     </div>
@@ -53,14 +54,13 @@
       <img src="{% static 'img/paymment_icons.png' %}" width="150px" alt="image">
       <img src="{% static 'img/norton_seal.png' %}" width="150px" alt="image">
       <hr>
-      <a class="nav-link text-body py-5" 
-        {% if user.is_authenticated %}
-          href="{% url 'orders:order_create' %}"
-        {% else %}
-          href="{% url 'payments:checkout_options' %}"
-        {% endif %}>
+      <a class="nav-link text-body py-5" {% if user.is_authenticated %} href="{% url 'orders:order_create' %}"
+        {% else %} href="{% url 'payments:checkout_options' %}" {% endif %}>
         <button type="button" class="btn-dark rounded-pill btn-lg px-5 text-white">Checkout</button>
       </a>
+      {% else %}
+      <p>Your cart is empty!</p>
+      {% endif %}
     </div>
     <br>
   </div>

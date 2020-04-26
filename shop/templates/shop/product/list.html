@@ -8,10 +8,10 @@
   <hr>
   <br>
   <p>
-    <p>Filter by Category:</p>
-      <a class="btn btn-light" href="{% url 'shop:product_list' %}">All Products</a>
+    <p class="lead">Filter by Category:</p>
+    <a class="btn btn-info" href="{% url 'shop:product_list' %}">All Products</a>
     {% for c in categories %}
-    <a class="btn btn-light" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+    <a class="btn btn-light mx-2" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
     {% endfor %}
 
 </div>

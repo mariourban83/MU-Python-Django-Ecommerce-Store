@@ -3,7 +3,13 @@
 
 {% block content %}
 
-<h4>Thanks, your order is paid now <strong></strong>!</h4>
-<p>You can return back <a class='text-success' href="{% url 'shop:home' %}"><strong> Home </strong></a>now </p>
+<div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
+    <p class="text-center p-3 lead">Payment successful !</p>
+    <br>
+    <img class="img-fluid" src="{% static 'img/order_proccess.jpg' %}" alt="order processing diagram">
+    <br>
+    <p class="text-center lead my-3">You can return back <a class='text-success' href="{% url 'shop:home' %}"><strong>
+                Home </strong></a>now </p>
+</div>
 
 {% endblock %}

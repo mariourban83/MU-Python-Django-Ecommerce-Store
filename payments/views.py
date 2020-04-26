@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render
 from cart.cart import Cart
 from django.conf import settings
 import stripe
@@ -19,13 +19,13 @@ def payment(request):
     CLIENT_ID = settings.CLIENT_ID  # Paypal
     pubKey = settings.STRIPE_PUBLISHABLE_KEY  # Stripe
     if request.method == 'POST':
-        pubKey = pubKey
         charge = stripe.Charge.create(
             amount=int(total_price * 100),
             currency='EUR',
             source=request.POST['stripeToken']
         )
         print(request.POST)
+        print(charge)
         cart.clear()
         return render(request, 'payments/payment_success.html',
                       {'pubKey': pubKey})
@@ -39,4 +39,5 @@ def payment(request):
 
 def payment_success(request):
     title = 'LR | Payment Success'
-    return render(request, 'payments/payment_success.html')
+    return render(request, 'payments/payment_success.html',
+                  {'title': title})
