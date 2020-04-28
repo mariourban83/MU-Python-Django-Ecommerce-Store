@@ -8,11 +8,18 @@ from django.utils.safestring import mark_safe
 
 
 def order_detail(obj):
+
+    '''For displaying datails
+       about the individual order'''
+
     return mark_safe('<a href="{}">View</a>'.format(
         reverse('orders:admin_order_detail', args=[obj.id])))
 
 
 def export_to_csv(modeladmin, request, queryset):
+
+    '''For exporting to the CSV file'''
+
     opts = modeladmin.model._meta
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; '\

@@ -1,5 +1,7 @@
 from .cart import Cart
 
+# Context globally available
+
 
 def cart(request):
     """
