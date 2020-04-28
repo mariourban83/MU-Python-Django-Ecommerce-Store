@@ -8,7 +8,7 @@
 ## Table of Contents
 * [Project summary](#project-summary)
 * [Design](#design)
-* [User Experience](#ux)
+* [User Experience](#ux)   
     * User Stories
 * [Features](#features)
     * Existing Features
@@ -16,8 +16,8 @@
 * [Technologies used](#technologies-used)
 * [Testing](#testing)
 * [Deployment](#deployment)
-    * [Local deployment](#local-deployment)
-    * [Heroku](#heroku-deployment)
+    * Local deployment
+    * Heroku
 * [Credits](#credits)
 
 ---
@@ -37,9 +37,11 @@ The website was designed with mobile first approach with user in mind. The wiref
 The project uses Poppins and Roboto fonts from Google Fonts Library
 Main color #74ab8c  is used for topbar and footer.The color was chosen to match with product collection color.
 
+[![User flow](https://eshop-static-s3.s3-eu-west-1.amazonaws.com/static/img/User+Flow.png "User Flow")](https://lr-onlineshop.herokuapp.com)
+
 ---  
 
-## [User Experience](#ux)
+## [User Experience](#ux)   
 
 ### User Stories  
 
@@ -75,7 +77,7 @@ Main color #74ab8c  is used for topbar and footer.The color was chosen to match 
 * Edit customers info
 * Contact customers  
 
-[Back to top](#summary)
+[Back to top](#project-summary)
 
 ---  
 
@@ -118,6 +120,10 @@ After selecting amount and pressing add to cart button, user is redirected to th
 
 Displaying only products in selected category.
 
+#### Search Page
+
+Full site search is performed after entering string into the searchbar box. User is redirected to the search result page where relevant results are displayed
+
 #### Cart
 
 If cart is empty, only 'Cart is empty is displayed'. After adding an item to the cart(clicking add to cart button), user gets redirected to the cart page where products present in cart are displayed on the left with the ability to update ammount of product/s or remove the item/s completely from the cart. Price is automatically calculated after add, edit or remove item/s (user actions).
@@ -148,7 +154,7 @@ Standard django forms and sessions are used for managing user accounts
 * Testing
 ---
 
-[Back to top](#summary)
+[Back to top](#project-summary)
 
 ---  
 
@@ -238,9 +244,7 @@ The live version of this project deployed to Heroku can be found [here](https://
 
 ---
 
-
-
-[Back to top](#summary)
+[Back to top](#project-summary)
 
 ## [Credits](#credits)
 
