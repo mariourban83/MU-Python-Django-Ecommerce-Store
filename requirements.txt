@@ -15,7 +15,7 @@ docutils==0.15.2
 html5lib==1.0.1
 idna==2.9
 jmespath==0.9.5
-Pillow==7.0.0
+Pillow==8.1.1
 pycparser==2.20
 Pyphen==0.9.5
 python-dateutil==2.8.1
@@ -48,7 +48,7 @@ gunicorn==20.0.4
 html5lib==1.0.1
 idna==2.9
 jmespath==0.9.5
-Pillow==7.0.0
+Pillow==8.1.1
 psycopg2==2.8.4
 pycparser==2.20
 Pyphen==0.9.5
@@ -83,7 +83,7 @@ gunicorn==20.0.4
 html5lib==1.0.1
 idna==2.9
 jmespath==0.9.5
-Pillow==7.0.0
+Pillow==8.1.1
 psycopg2==2.8.4
 pycparser==2.20
 Pyphen==0.9.5
