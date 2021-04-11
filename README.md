@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.com/mariourban83/milestone4-eshop.svg?branch=master)](https://travis-ci.com/mariourban83/milestone4-eshop)
-
+[![Build Status](https://travis-ci.com/mariourban83/MU-Python-Django-Ecommerce-Store.svg?branch=master)](https://travis-ci.com/mariourban83/MU-Python-Django-Ecommerce-Store)
 ## Ecommerce Django-Python project.
 [![LR Onlineshop Demo](https://eshop-static-s3.s3-eu-west-1.amazonaws.com/static/img/git_banner_1.jpg "LR-Onlineshop Demo")](https://lr-onlineshop.herokuapp.com)
 
