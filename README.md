@@ -202,9 +202,11 @@ For my version control I used Github and Heroku for hosting the live project.
 1. Open Terminal in the desired project directory of local maschine
 2. Create and activate virtual environment if necessary.   
   ```python3 -m venv venv ```   
-  ```source venv/bin/activate``` for linux maschine.
-3. Enter folowing commands :   
-```git clone https://github.com/mariourban83/milestone4-eshop.git ```  (will download and unpack the project)   
+  ```source venv/bin/activate``` for linux machine.   
+  ``` pip3 install wheel``` if not available locally.
+3. Enter the folowing commands :   
+```git clone https://github.com/mariourban83/milestone4-eshop.git ```  (this will download and unpack the project) 
+cd into project root directory  and    
 ```pip3 install -r requirements.txt```
 4. In the main project folder of the project directory, where settings.py lives, create  **.env** file and enter the following:
 

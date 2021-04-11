@@ -8,15 +8,14 @@
             style="box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);">
             <a href="{{ product.get_absolute_url }}" class="text-body text-decoration-none ">
                 <div class="row">
-                    <div class="col-12" style="height:60px">
-                        <p class="pt-2">{{ product.name }} <br>
-                            <small class="pt-0">{{ product.content }}</small></p>
+                    <div class="col-12">
+                        <p class="mb-3">{{ product.name }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         {% if product.image %}
-                        <img class="card-img-top pt-3" src="{{ product.image.url }}"
+                        <img class="card-img-top" src="{{ product.image.url }}"
                             alt="image of {{ product.name }} product">
                         {% else %}
                         <img class="card-img-top pt-3" src="{% static 'img/no_image.png' %}" alt="no product image">
@@ -30,7 +29,7 @@
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                    <input type="submit" class="btn btn-light  mx-auto" value="add to cart">
+                    <input type="submit" class="btn btn-success  mx-auto mt-3" value="add to cart">
                 </form>
                 <br>
             </div>
